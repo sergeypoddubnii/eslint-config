@@ -1,8 +1,9 @@
 
 function App() {
   return (
-    <div className="App">
-    </div>
+   <div>
+     root of app
+   </div>
   );
 }
 
