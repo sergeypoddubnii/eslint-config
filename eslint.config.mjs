@@ -1,5 +1,6 @@
-import globals from "globals";
+
 import pluginJs from "@eslint/js";
+import globals from "globals";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import pluginAirbnb from 'eslint-config-airbnb';
@@ -7,7 +8,6 @@ import pluginImport from 'eslint-plugin-import';
 
 export default [
   {
-    // languageOptions: { globals: globals.browser },
     plugins: {
       tsplugin: tseslint,
       pluginReact: pluginReact,
@@ -18,5 +18,23 @@ export default [
   {
     ignores: ['node_modules', 'dist', 'build']
   },
-  pluginJs.configs.recommended
+  pluginJs.configs.recommended,
+  {
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+        ...globals.es2022
+      },
+      parserOptions: pluginReact.configs.recommended.parserOptions
+    },
+  },
+  {
+    files: ['**/*.{js,jsx,ts,tsx}']
+  },
+  {
+    rules: {
+
+    }
+  }
 ];
