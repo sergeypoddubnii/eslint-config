@@ -1,38 +1,36 @@
-
-import pluginJs from "@eslint/js";
 import globals from "globals";
+import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
-import pluginAirbnb from 'eslint-config-airbnb';
-import pluginImport from 'eslint-plugin-import';
 
 export default [
   {
-    plugins: {
-      tsplugin: tseslint,
-      pluginReact: pluginReact,
-      pluginAirbnb: pluginAirbnb,
-      pluginImport: pluginImport,
-    },
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]
   },
   {
     ignores: ['node_modules', 'dist', 'build']
   },
-  pluginJs.configs.recommended,
   {
     languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.browser,
-        ...globals.es2022
-      },
-      parserOptions: pluginReact.configs.recommended.parserOptions
-    },
+      globals: globals.browser
+    }
   },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
+  pluginReact.configs.flat.recommended,
   {
-    files: ['**/*.{js,jsx,ts,tsx}']
-  },
-  {
-    rules: {}
+    rules: {
+      "no-case-declarations": "off",
+      "@typescript-eslint/ban-ts-comment" : "off",
+      "no-console": ["error"],
+      "template-curly-spacing": 0,
+      "@typescript-eslint/no-unused-expressions": "off",
+      "quotes": ["error", "single"],
+      "no-multiple-empty-lines": ["error", { "max": 1 }],
+      "no-debugger": "error",
+      "indent": ["error", "tab"],
+      "space-in-parens": ["error", "never"]
+    }
   }
 ];
