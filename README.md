@@ -1,5 +1,3 @@
-eslint v9
-
-In the project directory, you can run:
+eslint v9 with create-react-app
 
 ### `npm start`
